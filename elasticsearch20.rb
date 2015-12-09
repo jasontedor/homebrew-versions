@@ -1,14 +1,13 @@
 class Elasticsearch20 < Formula
-  desc "Distributed real-time search & analytics engine for the cloud"
+  desc "RESTful, distributed search & analytics"
   homepage "https://www.elastic.co/products/elasticsearch"
   url "https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.0.1/elasticsearch-2.0.1.tar.gz"
   sha256 "7be4a6c717002057e422073ca8e957df8b4cb198bf2399a0d79f42121e34798b"
-  revision 1
 
   conflicts_with "elasticsearch", :because => "Different versions of same formula"
-  
+
   bottle :unneeded
-  
+
   depends_on :java => "1.7+"
 
   def cluster_name
