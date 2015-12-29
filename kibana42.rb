@@ -4,11 +4,7 @@ class Kibana42 < Formula
   url "https://github.com/elastic/kibana.git", :tag => "v4.2.2", :revision => "0a008cd5e312a99eeff403f9585af2d99a18758a"
   head "https://github.com/elastic/kibana.git"
 
-  bottle do
-    sha256 "a324b8d38a6f488aedbbaf58410e247e7319c502e259c889e68a35a829a2e757" => :el_capitan
-    sha256 "29b5cc931a3bcfbd6df658b1f7a160245a4afea9fb8818689a99420dfb5c36b8" => :yosemite
-    sha256 "9036742597f5ef7cbea88f4e04f9d3a0227a3effad6ce9547142b31efdc67cd1" => :mavericks
-  end
+  conflicts_with "kibana", :because => "Different versions of same formula"
 
   resource "node" do
     url "https://nodejs.org/dist/v0.12.9/node-v0.12.9.tar.gz"
