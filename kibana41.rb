@@ -19,20 +19,20 @@ class Kibana41 < Formula
     end
 
     # do not download binary installs of Node.js
-    inreplace buildpath/"tasks/build.js", %r{('download_node_binaries',)}, "// \\1"
+    inreplace buildpath/"tasks/build.js", /('download_node_binaries',)/, "// \\1"
 
     # do not build packages for other platforms
     if OS.mac? && Hardware::CPU.is_64_bit?
       platform = "darwin-x64"
     elsif OS.linux?
-      platform = if Hardware::CPU.is_64_bit? then "linux-x64" else "linux-x86" end
+      platform = Hardware::CPU.is_64_bit? ? "linux-x64" : "linux-x86"
     else
       raise "Installing Kibana via Homebrew is only supported on Darwin x86_64, Linux i386, Linux i686, and Linux x86_64"
     end
-    inreplace buildpath/"Gruntfile.js", %r{^(\s+)platforms: .*}, "\\1platforms: [ '#{platform}' ],"
+    inreplace buildpath/"Gruntfile.js", /^(\s+)platforms: .*/, "\\1platforms: [ '#{platform}' ],"
 
     # do not build zip packages
-    inreplace buildpath/"tasks/config/compress.js", %r{(build_zip: .*)}, "// \\1"
+    inreplace buildpath/"tasks/config/compress.js", /(build_zip: .*)/, "// \\1"
 
     ENV.prepend_path "PATH", prefix/"libexec/node/bin"
     system "npm", "install", "grunt-cli", "bower"
@@ -50,7 +50,7 @@ class Kibana41 < Formula
     inreplace "#{bin}/kibana", %r{/node/bin/node}, "/libexec/node/bin/node"
 
     cd prefix do
-      inreplace "config/kibana.yml", %{/var/run/kibana.pid}, var/"run/kibana.pid"
+      inreplace "config/kibana.yml", %r{/var\/run\/kibana.pid}, var/"run/kibana.pid"
       (etc/"kibana").install Dir["config/*"]
       rm_rf "config"
 
