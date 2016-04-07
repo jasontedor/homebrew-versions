@@ -1,8 +1,8 @@
 class Logstash22 < Formula
   desc "Tool for managing events and logs"
   homepage "https://www.elastic.co/products/logstash"
-  url "https://download.elastic.co/logstash/logstash/logstash-2.2.3.tar.gz"
-  sha256 "a7ecdf05a0efcb6c9a2182267df56efb27f550d681355531e9f12446d24d611d"
+  url "https://download.elastic.co/logstash/logstash/logstash-2.2.4.tar.gz"
+  sha256 "0d7fa078eb93b1eecea2845b1404b0f05b438cb3ecc9999316477980ef945492"
 
   conflicts_with "logstash", :because => "Different versions of same formula"
 
