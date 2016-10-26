@@ -1,14 +1,8 @@
-class Elasticsearch23 < Formula
+class Elasticsearch24 < Formula
   desc "Distributed search & analytics engine"
   homepage "https://www.elastic.co/products/elasticsearch"
-  url "https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.5/elasticsearch-2.3.5.tar.gz"
-  sha256 "1119a8c18620b98c4b85261318663a1f26dea92a26f34dfeb7f813fb7cbb468a"
-
-  head do
-    url "https://github.com/elasticsearch/elasticsearch.git"
-    depends_on :java => "1.8"
-    depends_on "gradle" => :build
-  end
+  url "https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.1/elasticsearch-2.4.1.tar.gz"
+  sha256 "23a369ef42955c19aaaf9e34891eea3a055ed217d7fbe76da0998a7a54bbe167"
 
   bottle :unneeded
   depends_on :java => "1.7+"
@@ -20,14 +14,6 @@ class Elasticsearch23 < Formula
   end
 
   def install
-    if build.head?
-      # Build the package from source
-      system "gradle", "clean", "assemble"
-      # Extract the package to the current directory
-      targz = Dir["distribution/tar/build/distributions/elasticsearch-*.tar.gz"].first
-      system "tar", "--strip-components=1", "-xf", targz
-    end
-
     # Remove Windows files
     rm_f Dir["bin/*.bat"]
     rm_f Dir["bin/*.exe"]
